@@ -22,4 +22,13 @@ class DefaultController extends AbstractController
      
          ]);
     }
+    /**
+     * @Route("/contact",name="app_contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('contact.html.twig', [
+            'titre'=> 'Contact'
+        ]);
+    }
 }
