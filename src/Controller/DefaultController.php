@@ -16,18 +16,14 @@ class DefaultController extends AbstractController
 
     public function index(): Response
     {
-        return $this->render('index.html.twig', [
-
-            'titre' => 'Bienvenue!'
-     
-         ]);
+        return $this->render('Home/index.html.twig');
     }
     /**
      * @Route("/contact",name="app_contact")
      */
     public function contact(): Response
     {
-        return $this->render('contact.html.twig', [
+        return $this->render('Home/contact.html.twig', [
             'titre'=> 'Contact'
         ]);
     }
