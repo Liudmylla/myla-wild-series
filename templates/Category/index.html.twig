@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block title %}Toutes les catégories{% endblock %}
+
+{% block body %}
+    <h1>La liste des catégories : </h1>
+
+    {% for category in categories %}
+        <p><a href="{{ path("category_show", { categoryName: category.name }) }}">{{category.name}}</a></p>
+    {% endfor %}
+
+  
+
+{% endblock %}
