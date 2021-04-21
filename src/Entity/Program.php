@@ -33,10 +33,11 @@ class Program
     private $poster;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
      */
     private $category;
+
+    
 
     public function getId(): ?int
     {
@@ -79,15 +80,17 @@ class Program
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getCategory(): ?category
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCategory(?category $category): self
     {
         $this->category = $category;
 
         return $this;
     }
+
+   
 }
