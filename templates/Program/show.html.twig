@@ -8,7 +8,7 @@
 
 <div class="media">
 
-  <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+  <img class="align-self-start mr-3 " src="{{program.poster}}" alt="{{ program.title }} poster">
 
   <div class="media-body">
 
@@ -17,7 +17,14 @@
     <p>{{ program.summary }}</p>
 
     <p>Catégorie : {{ program.category.name }}</p>
+    <h3>Saisons</h3>
+{% for season in seasons %}
 
+           <a href="/programs/{{program.id}}/season/{{season.id}}">
+						 Saison : {{season.number}} - Year: {{season.year}}
+					</a>
+ 
+{% endfor %}
   </div>
   <a href="{{ path('program_index') }}">
 

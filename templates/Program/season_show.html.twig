@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Saison {{season.number}} {{program.title}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center my-5">            
+         <h2>Liste des épisodes: {{program.title}} </h2>
+         <h2>Saison {{season.number}} </h2>
+           <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+         </div>
+         
+{% for episode in season.episodes %}
+
+<div class="col-12 col-md-4">
+    <p>{{episode.number}} : {{episode.title}}</p>
+    <p>{{episode.synopsis}}</p>
+    </div>
+   {% else %} 
+     </div>
+</div>
+        Aucune épisode trouvée.
+{% endfor %}
+{% endblock %}
