@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
+use App\Form\ProgramType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
 * @Route("/programs", name="program_")
@@ -28,6 +30,29 @@ class ProgramController extends AbstractController
         );
     }
 
+       /**
+     * @Route("/new",name="new")
+     */
+
+    public function new(Request $request): Response
+    {
+        $program = new Program();
+        $form = $this->createForm(ProgramType::class,$program);
+        //get data 
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+              // Deal with the submitted data
+            $entityManager = $this->getDoctrine()->getManager();
+            // For example : persiste & flush the entity
+            $entityManager->persist($program);
+            $entityManager->flush();
+            // And redirect to a route that display the result
+            return $this->redirectToRoute('program_index');
+        }
+        return $this->render('Program/new.html.twig', [
+            "form"=>$form->createView(),
+        ]);
+    }
 
 
 
