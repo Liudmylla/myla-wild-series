@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Episode: {{episode.title}} Saison: {{season.number}} {{program.title}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center my-5">            
+         <h2>Le nom de la série: {{program.title}} </h2>
+         <h2>Saison {{season.number}} </h2>
+          <h2>Episode N° {{episode.number}}- {{episode.title}}</h2>
+          <h2>Le résume: {{episode.synopsis}}</h2>
+           <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+         </div>
+     </div>    
+</div>
+{% endblock %}
