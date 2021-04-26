@@ -9,6 +9,7 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\ProgramType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
 * @Route("/programs", name="program_")
@@ -80,8 +81,11 @@ class ProgramController extends AbstractController
     * name="season_show",
     * requirements={"program"="\d+", "season"="\d+"},
     * methods={"GET"})
+    * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "id"}})
+    * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"season": "id"}})
+    * @return Response
     */
-    public function showSeason(Program $program, Season $season)
+    public function showSeason(Program $program, Season $season):Response
     {
 
         return $this->render('Program/season_show.html.twig', ['program' => $program, 'season' => $season]);
@@ -91,11 +95,14 @@ class ProgramController extends AbstractController
     /**
      * @Route("/{program}/seasons/{season}/episodes/{episode}",
      * name="episode_show",
-     * methods={"GET"}
-     * )
+     * methods={"GET"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "id"}})
+     * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"season": "id"}})
+     * @ParamConverter("episode",class="App\Entity\Episode",options={"mapping":{"episode": "id"}})
+     * @return Response
      */
 
-    public function showEpisode(Program $program, Season $season, Episode $episode)
+    public function showEpisode(Program $program, Season $season, Episode $episode):Response
     {
         return $this->render('Program/episode_show.html.twig', [
         'program' => $program,
