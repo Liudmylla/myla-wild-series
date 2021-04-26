@@ -40,7 +40,7 @@ class ProgramController extends AbstractController
         $form = $this->createForm(ProgramType::class,$program);
         //get data 
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
               // Deal with the submitted data
             $entityManager = $this->getDoctrine()->getManager();
             // For example : persiste & flush the entity
