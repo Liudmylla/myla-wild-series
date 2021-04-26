@@ -7,6 +7,7 @@ use App\Entity\Program;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -22,6 +23,8 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="100", maxMessage="Le nom de catégorie saisi {{ value }} est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $name;
 

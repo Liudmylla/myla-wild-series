@@ -36,7 +36,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class,$category);
         //get data 
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
               // Deal with the submitted data
             $entityManager = $this->getDoctrine()->getManager();
             // For example : persiste & flush the entity
