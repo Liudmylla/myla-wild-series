@@ -5,9 +5,19 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use App\Service\Slugify;
+
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
+    private $slugify;
+
+    public function __construct (Slugify $slugify)
+    {
+       $this->slugify = $slugify;
+    }
+
+
     public function getDependencies()  
     {
         return [CategoryFixtures::class];
@@ -74,6 +84,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setTitle($title);
             $program->setSummary($data['summary']);
             $program->setCategory($this->getReference('category_' . rand(0,4)));
+            $slug = $this->slugify->generate($title);
+            $program->setSlug($slug);
             $manager->persist($program);
             $this->addReference('program_' . $i, $program);
             $i++;

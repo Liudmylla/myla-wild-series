@@ -15,7 +15,7 @@
 
 <div class="col-12 col-md-4">
     <p>{{episode.number}} : {{episode.title}}</p>
-   <a href="{{ path("program_episode_show",{program: episode.season.program.id, season:episode.season.id,episode:episode.id})}}">Voir le résumé</a>
+   <a href="{{ path("program_episode_show", { "program": program.slug, "season": season.number, "episode": episode.slug}) }}">Voir épisode</a>
     </div>
    {% else %} 
      </div>
