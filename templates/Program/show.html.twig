@@ -20,7 +20,8 @@
     <h4>Saisons</h4>
 {% for season in seasons %}
 
-           <a href="/programs/{{program.id}}/season/{{season.id}}">
+     <a href="{{ path("program_season_show", {"program": program.slug, "season": season.number })}}"> 
+         
 						 Saison : {{season.number}} - Year: {{season.year}}
 					</a>
  
